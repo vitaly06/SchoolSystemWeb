@@ -17,19 +17,19 @@ public class Person {
     @NotEmpty(message = "Поле не может быть пустым")
     private String confrimPassword;
     @NotEmpty(message = "Поле не может быть пустым")
-    private String naprav;
+    private String groupe;
     private String typeProfile;
 
     public Person(){
 
     }
 
-    public Person(String name, String email, String password, String confrimPassword, String naprav, String typeProfile) {
+    public Person(String name, String email, String password, String confrimPassword, String groupe, String typeProfile) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.confrimPassword = confrimPassword;
-        this.naprav = naprav;
+        this.groupe = groupe;
         this.typeProfile = typeProfile;
     }
 
@@ -65,12 +65,12 @@ public class Person {
         this.password = password;
     }
 
-    public String getNaprav() {
-        return naprav;
+    public String getGroupe() {
+        return groupe;
     }
 
-    public void setNaprav(String naprav) {
-        this.naprav = naprav;
+    public void setGroupe(String groupe) {
+        this.groupe = groupe;
     }
 
     public String getTypeProfile() {

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="resources/css/UserLkTable.css">
+    <title>Личный кабинет</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #E69F4F;">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                        <h1 class="fs-5 d-none d-sm-inline">Личный кабинет</h1>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="/profile" class="nav-link align-middle px-0 text-white text-decoration-none">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">На главную</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/" class="nav-link align-middle px-0 text-white text-decoration-none">
+                                <i class="fs-4 bi-book"></i> <span class="ms-1 d-none d-sm-inline">Новости и объявления</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-0 align-middle text-white text-decoration-none">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Расписание</span></a>
+                        </li>
+                        <li>
+                            <a href="#" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white text-decoration-none">
+                                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Электронный дневник</span> </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="resources/imgs/user.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                            <span th:text="${name}" class="d-none d-sm-inline mx-1">имя фамилия</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col py-3">
+                <table>
+                    <tr>
+                        <th>Время</th>
+                        <th>Понедельник</th>
+                        <th>Вторник</th>
+                        <th>Среда</th>
+                        <th>Четверг</th>
+                        <th>Пятница</th>
+                    </tr>
+                    <tr th:block th:each="day : ${schedule}">
+                        <td><span th:text="${day.getTime}">time</span></td>
+                        <td><span th:text="${day.getMonday}">time</span></td>
+                        <td><span th:text="${day.getTuesday}">time</span></td>
+                        <td><span th:text="${day.getWednesday}">time</span></td>
+                        <td><span th:text="${day.getThursday}">time</span></td>
+                        <td><span th:text="${day.getFriday}">time</span></td>
+                    </tr>
+                </table>
+                
+            </div>
+        </div>
+    </div>

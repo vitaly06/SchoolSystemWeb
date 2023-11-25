@@ -2,8 +2,12 @@ package ru.okei.urbaton.dao;
 
 import org.springframework.stereotype.Component;
 import ru.okei.urbaton.models.Person;
+import ru.okei.urbaton.models.Schedule;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -12,7 +16,7 @@ public class PersonDAO {
     }
 
     private static Connection connection;
-
+    // Связь с БД
     public static void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
@@ -26,12 +30,13 @@ public class PersonDAO {
         }
     }
 
+    // Регистрация
     public boolean save(Person person) {
         connect();
         try {
             Statement statement = connection.createStatement();
             String SQL = "INSERT INTO USERS VALUES('" + person.getName() + "', '" + person.getEmail() +
-                    "', '" + person.getPassword() + "', '" + person.getNaprav() + "', '" + person.getTypeProfile() + "')";
+                    "', '" + person.getPassword() + "', '" + person.getGroupe() + "', '" + person.getTypeProfile() + "')";
             statement.executeUpdate(SQL);
             connection.close();
             return false;
@@ -40,9 +45,11 @@ public class PersonDAO {
         }
         return false;
     }
-    public boolean login(Person person){
+
+    // Логин
+    public boolean login(Person person) {
         connect();
-        try{
+        try {
             Statement statement = connection.createStatement();
             String SQL = "SELECT password FROM USERS WHERE email = '" + person.getEmail() + "'";
             ResultSet resultSet = statement.executeQuery(SQL);
@@ -60,8 +67,31 @@ public class PersonDAO {
         }
         return false;
     }
+    public List<Schedule> getSchedule(String groupe){
+        List<Schedule> days = new ArrayList<Schedule>();
+        connect();
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "SELECT * FROM GROUPEF";
+            ResultSet resultSet = statement.executeQuery(SQL);
+            while (resultSet.next()) {
+                days.add(new Schedule(resultSet.getString("time"),
+                        resultSet.getString("monday"),
+                        resultSet.getDouble("tuesday"),
+                        resultSet.getString("wednesday"),
+                        resultSet.getDouble("thursday"),
+                        resultSet.getString("friday")));
+            }
+            connection.close();
+            return days;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return Collections.emptyList();
+    }
 
-    public String[] getData(Person person){
+    // Данные о пользователе
+    public String[] getData(Person person) {
         connect();
         try {
             Statement statement = connection.createStatement();
@@ -70,14 +100,20 @@ public class PersonDAO {
             String name = resultSet.getString("name");
             String email = resultSet.getString("email");
             String password = resultSet.getString("password");
-            String naprav = resultSet.getString("naprav");
+            String groupe = resultSet.getString("groupe");
             String typeProfile = resultSet.getString("typeProfile");
-            String[] data =  new String[] {name, email, password, naprav, typeProfile};
+            String[] data = new String[]{name, email, password, groupe, typeProfile};
             connection.close();
             return data;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return new String[5];
+    }
+    public boolean adminLogin(Person person){
+        if (person.getName() == "admin" && person.getPassword() == "admin"){
+            return true;
+        }
+        return false;
     }
 }

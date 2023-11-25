@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.okei.urbaton.dao.PersonDAO;
 import ru.okei.urbaton.models.Person;
+import ru.okei.urbaton.models.Schedule;
+
+import java.util.List;
 
 
 @Controller
@@ -17,6 +20,7 @@ public class MainController {
     boolean auth = false; // авторизация
     String[] personData; // данные о пользователе
     String[] fio;
+    String groupe; // группа ученика
     @Autowired
     PersonDAO personDAO;
 
@@ -33,6 +37,16 @@ public class MainController {
         model.addAttribute("name", fio[0] + " " + fio[1]);
         return "UserLkNews";
     }
+    @GetMapping("/schedule")
+    public String shedule(Model model){
+        model.addAttribute("name", fio[0] + " " + fio[1]);
+        List<Schedule> schedule = personDAO.getSchedule(personData[3]);
+        for (Schedule day : schedule) {
+            System.out.println(day.getWednesday());
+        }
+        model.addAttribute("schedule", schedule);
+        return "UserLkTable";
+    }
 
     @GetMapping("/registration")
     public String registration() {
@@ -42,7 +56,7 @@ public class MainController {
     @PostMapping("/registration")
     public String registrationPost(@ModelAttribute("person") @Valid Person person,
                                    BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "registration";
         }
         personDAO.save(person);
@@ -52,26 +66,31 @@ public class MainController {
     @PostMapping("/login")
     public String loginPost(@ModelAttribute Person person,
                             BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "registration";
         }
         auth = personDAO.login(person); // меняем вход на true
+        if (!auth) {
+            return "registration";
+        }
         personData = personDAO.getData(person); // получаем данные о пользователе
         fio = personData[0].split(" "); // ФИО
+        groupe = personData[3];
+
         System.out.println(personData);
         return "redirect:/";
     }
-    @GetMapping("/new")
-    public String nw() {
-        return "new";
+
+    @GetMapping("/admin")
+    public String admin(){
+        return "loginAdmin";
     }
-    @PostMapping("/new")
-    public String newPost(@ModelAttribute Person person,
-                            BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            return "new";
+    @PostMapping("/admin")
+    public String adminLogin(@ModelAttribute("person") Person person){
+        if (personDAO.adminLogin(person)){
+            return "ok";
         }
-        System.out.println("ia");
-        return "redirect:/";
+        return "no";
     }
+
 }
