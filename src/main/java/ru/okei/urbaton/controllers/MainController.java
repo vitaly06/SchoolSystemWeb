@@ -18,6 +18,7 @@ import java.util.List;
 @Controller
 public class MainController {
     boolean auth = false; // авторизация
+    boolean adminAuth = false; // авторизация админа
     String[] personData; // данные о пользователе
     String[] fio;
     String groupe; // группа ученика
@@ -85,10 +86,27 @@ public class MainController {
     }
     @PostMapping("/admin")
     public String adminLogin(@ModelAttribute("person") Person person){
-        if (personDAO.adminLogin(person)){
-            return "ok";
+        if (personDAO.adminLogin(person.getEmail(), person.getPassword())){
+            adminAuth = true;
+            return "redirect:/adminPanel";
         }
-        return "no";
+        return "loginAdmin";
     }
 
+    @GetMapping("/adminPanel") // панель админа
+    public String adminPanel(){
+        if (adminAuth){
+            return "adminPanel";
+        }
+        return "redirect:/";
+    }
+    @GetMapping("/adminTable") // изменения в расписании
+    public String adminTable(){
+        return "adminTable";
+    }
+
+    @GetMapping("/addTeacher")
+    public String addTeacher(){
+        return "adminAddTeacher";
+    }
 }

@@ -111,8 +111,8 @@ public class PersonDAO {
         }
         return new String[5];
     }
-    public boolean adminLogin(Person person){
-        if (person.getName() == "admin" && person.getPassword() == "admin"){
+    public boolean adminLogin(String email, String password){
+        if (Objects.equals(email, "admin") && Objects.equals(password, "admin")){
             return true;
         }
         return false;

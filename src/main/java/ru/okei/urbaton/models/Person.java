@@ -20,8 +20,7 @@ public class Person {
     private String groupe;
     private String typeProfile;
 
-    public Person(){
-
+    public Person() {
     }
 
     public Person(String name, String email, String password, String confrimPassword, String groupe, String typeProfile) {
