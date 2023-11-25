@@ -28,9 +28,12 @@
                     <div class="col-md-2  d-flex justify-content-center">
                         <p><a href="">главная</a></p>
                     </div>
-                    <div class="col-md-2  d-flex justify-content-center">
+                    <div th:if="${auth} == true" class="col-md-2  d-flex justify-content-center">
                         <p><a href="/profile">личный кабинет</a></p>
                     </div>
+                        <div th:unless="${auth} == true" class="col-md-2  d-flex justify-content-center">
+                            <p><a href="/registration">личный кабинет</a></p>
+                        </div>
                     <div class="col-md-2  d-flex justify-content-center">
                         <p>+7 (343) 301-91-29</p>
                     </div>
@@ -71,7 +74,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4 d-flex justify-content-center" style="background-color: #F1D99A; margin-left: 5%;">
-                <img src="resources/imgsimg/boy.png" alt="" class="myImg2" id="responsive-image">
+                <img src="resources/imgs/boy.png" alt="" class="myImg2" id="responsive-image">
             </div>
             <div class="col-md-6 d-flex justify-content-end" id="text">
                 <div class="row">
