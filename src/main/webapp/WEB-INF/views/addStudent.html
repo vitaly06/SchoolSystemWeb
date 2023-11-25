@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="htttp://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/css/registration.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <div class="forms">
+        <div class="form login">
+            <span class="title">Добавить учителя</span>
+            <form th:action="@{/regStudent}" th:method="POST" th:object="${person}">
+                <div class="input-field">
+                    <input type="text" name="name" placeholder="Введите свое имя" required>
+                    <i class="uil uil-user"></i>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="email" placeholder="Введите свой email" required>
+                    <i class="uil uil-envelope icon"></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" name="password" class="password" placeholder="Создайте пароль" required>
+                    <i class="uil uil-lock icon"></i>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="groupe" placeholder="Выберите группу(1, 2 или 3)" required="">
+                    <i class="uil uil-user"></i>
+                </div>
+                <div class="input-field button">
+                    <input type="submit" value="Зарегистрироваться">
+                </div>
+            </form>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

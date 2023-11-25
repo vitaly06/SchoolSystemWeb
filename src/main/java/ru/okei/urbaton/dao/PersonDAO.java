@@ -31,12 +31,12 @@ public class PersonDAO {
     }
 
     // Регистрация
-    public boolean save(Person person) {
+    public boolean save(Person person, String typeProfile) {
         connect();
         try {
             Statement statement = connection.createStatement();
             String SQL = "INSERT INTO USERS VALUES('" + person.getName() + "', '" + person.getEmail() +
-                    "', '" + person.getPassword() + "', '" + person.getGroupe() + "', '" + person.getTypeProfile() + "')";
+                    "', '" + person.getPassword() + "', '" + person.getGroupe() + "', '" + typeProfile + "')";
             statement.executeUpdate(SQL);
             connection.close();
             return false;
@@ -116,5 +116,42 @@ public class PersonDAO {
             return true;
         }
         return false;
+    }
+
+    public ArrayList<String> getTeachers(){
+        connect();
+        ArrayList<String> teachers = new ArrayList<String>();
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "SELECT * FROM USERS WHERE typeProfile = 'teacher'";
+            ResultSet resultSet = statement.executeQuery(SQL);
+            while(resultSet.next()) {
+                teachers.add(resultSet.getString("name"));
+
+            }
+            connection.close();
+            return teachers;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+    public ArrayList<String> getTeachersGroupe(){
+        connect();
+        ArrayList<String> teachers = new ArrayList<String>();
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "SELECT * FROM USERS WHERE typeProfile = 'teacher'";
+            ResultSet resultSet = statement.executeQuery(SQL);
+            while(resultSet.next()) {
+                teachers.add(resultSet.getString("name") + " " + resultSet.getString("groupe"));
+
+            }
+            connection.close();
+            return teachers;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 }

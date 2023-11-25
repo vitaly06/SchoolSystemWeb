@@ -22,62 +22,12 @@
                     <i class="uil uil-lock icon"></i>
                     <i class="uil uil-eye-slash showHidePw"></i>
                 </div>
-
-
                 <div class="input-field button">
                     <input type="submit" value="Вход">
                 </div>
             </form>
-            <div class="login-signup">
-                <span class="text">Еще не участник?
-                    <a href="#" class="text signup-link">Зарегистрируйтесь</a>
-                </span>
-            </div>
         </div>
-        <!-- Registration Form -->
-        <div class="form signup">
-            <span class="title">Регистрация</span>
-            <form th:action="@{/registration}" th:method="POST" th:object="${person}">
-                <div class="input-field">
-                    <input type="text" name="name" placeholder="Введите свое имя" required>
-                    <i class="uil uil-user"></i>
-                </div>
-                <div class="input-field">
-                    <input type="text" name="email" placeholder="Введите свой email" required>
-                    <i class="uil uil-envelope icon"></i>
-                </div>
-                <div class="input-field">
-                    <input type="password" name="password" class="password" placeholder="Создайте пароль" required>
-                    <i class="uil uil-lock icon"></i>
-                </div>
-                <div class="input-field">
-                    <input type="password" name="confrimPassword" class="password" placeholder="Подтвердите пароль" required>
-                    <i class="uil uil-lock icon"></i>
-                    <i class="uil uil-eye-slash showHidePw"></i>
-                </div>
-                <div class="input-field">
-                    <input type="text" name="groupe" placeholder="Выберите группу(1, 2 или 3)" required="">
-                    <i class="uil uil-user"></i>
-                </div>
-                <div class="checkbox-text">
-                    <div class="checkbox-content">
-                      <input name="typeProfile" type="checkbox" id="logCheck" value="parent">
-                      <label for="logCheck" class="text" style="margin-right: 5%;">Родитель</label>
-                      <input name="typeProfile" type="checkbox" id="logCheck" value="student">
-                      <label for="logCheck" class="text">Ученик</label>
-                        
-                    </div>
-                </div>
-                <div class="input-field button">
-                    <input type="submit" value="Зарегистрироваться">
-                </div>
-            </form>
-            <div class="login-signup">
-                <span class="text">Уже участник?
-                    <a href="#" class="text login-link">Войти сейчас</a>
-                </span>
-            </div>
-        </div>
+
     </div>
 </div>
 <script>

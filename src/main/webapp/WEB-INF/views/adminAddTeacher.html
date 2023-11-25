@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en" xmlns:th="htttp://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,7 @@
                                 <i class="fs-4 bi bi-house"></i> <span class="ms-1 d-none d-sm-inline">На главную</span>
                             </a>
                         </li>
+                    </ul>
                     </div>
                 </div>
                 <div class="col py-3">
@@ -31,79 +33,19 @@
                             </div>
                             <div class="col-md-12" style="overflow-y:scroll; height: 500px;">
                                 <div class="teachers">
-                                    <p>Вася Пупкин</p>
-                                    <p>Иван Иванов</p>
-                                    <p>Иван Смирнов</p>
-                                    <p>Егор Иванов</p>
-                                    <p>Виталий Садиков</p>
-                                    <p>Кирилл Иванов</p>
-                                    <p>Александр Иванов</p>
-                                    <p>Александр Садиков</p>
-                                    <p>Александр Иванов</p>
+                                    <p th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></p>
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex justify-content-center" style="margin-top: 5%;">
-                                <form action="#">
+                                <form th:method="GET" th:action="@{/regTeacher}">
                                     <button class="button" id="openModalBtn">
                                        <h4>Добавить преподавателя</h4> 
                                     </button>
                                 </form>
                             </div>
                         </div>
-                        <div id="myModal" class="modal">
-                            <div class="modal-content">
-                              <span class="close">&times;</span>
-                              
-                              <h2 style="margin-bottom: 3%;">Добавление преподавателя</h2>
-                              
-                              <form>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12 d-flex justify-content-center" style="margin-bottom: 3%;">
-                                            <label for="fullName"><p>Фамилия Имя:</p></label>
-                                            <input type="text" id="fullName" name="fullName" required>
-                                        </div>
-                                        
-                                        <div class="col-md-12 d-flex justify-content-center" style="margin-bottom: 3%;">
-                                            <label for="profession"><p>Профессия: &nbsp; &nbsp; &nbsp; </p></label>
-                                            <input type="text" id="profession" name="profession" required>
-                                        </div>
-                                        
-                                        <div class="col-md-12 d-flex justify-content-center">
-                                            <button type="submit" id="button" style="border: solid;">Добавить преподавателя</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                
-                                
-                                
-                                
-                              </form>
-                            </div>
-                          </div>
-                          <script>
-                            var modal = document.getElementById("myModal");
-                            var btn = document.getElementById("openModalBtn");
-                            var span = document.getElementsByClassName("close")[0];
-
-                            btn.onclick = function() {
-                            modal.style.display = "block";
-                            }
-
-                            span.onclick = function() {
-                            modal.style.display = "none";
-                            }
-
-                            window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                            }
-                          </script>
                     </div>
-
             </div>
             </div>
         </div>
-    </div>
+    </body>

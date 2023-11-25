@@ -52,15 +52,7 @@ public class MainController {
         return "registration";
     }
 
-    @PostMapping("/registration")
-    public String registrationPost(@ModelAttribute("person") @Valid Person person,
-                                   BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-        personDAO.save(person);
-        return "redirect:/";
-    }
+
 
     @PostMapping("/login")
     public String loginPost(@ModelAttribute Person person,
@@ -101,12 +93,36 @@ public class MainController {
         return "redirect:/";
     }
     @GetMapping("/adminTable") // изменения в расписании
-    public String adminTable(){
+    public String adminTable(Model model){
+        model.addAttribute("teachers", personDAO.getTeachersGroupe());
         return "adminTable";
     }
-
+    // Добавление преподавателя
     @GetMapping("/addTeacher")
-    public String addTeacher(){
+    public String addTeacher(Model model){
+        model.addAttribute("teachers", personDAO.getTeachers());
         return "adminAddTeacher";
+    }
+    @GetMapping("/regTeacher")
+    public String regTeacher(){
+        return "regTeacher";
+    }
+    @PostMapping("/regTeacher")
+    public String saveTeacher(@ModelAttribute("person") Person person){
+        personDAO.save(person, "teacher");
+        return "redirect:/addTeacher";
+    }
+    @GetMapping("/regStudent")
+    public String regStudent(){
+        return "addStudent";
+    }
+    @PostMapping("/regStudent")
+    public String registrationPost(@ModelAttribute("person") @Valid Person person,
+                                   BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+        personDAO.save(person, "student");
+        return "redirect:/adminPanel";
     }
 }
