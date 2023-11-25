@@ -72,14 +72,15 @@ public class PersonDAO {
         connect();
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM GROUPEF";
+            String SQL = "SELECT * FROM GROUPE" + groupe;
             ResultSet resultSet = statement.executeQuery(SQL);
             while (resultSet.next()) {
+                System.out.println(resultSet.getString("time"));
                 days.add(new Schedule(resultSet.getString("time"),
                         resultSet.getString("monday"),
-                        resultSet.getDouble("tuesday"),
+                        resultSet.getString("tuesday"),
                         resultSet.getString("wednesday"),
-                        resultSet.getDouble("thursday"),
+                        resultSet.getString("thursday"),
                         resultSet.getString("friday")));
             }
             connection.close();

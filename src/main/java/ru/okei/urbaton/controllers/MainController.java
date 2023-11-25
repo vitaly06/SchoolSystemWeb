@@ -41,10 +41,8 @@ public class MainController {
     public String shedule(Model model){
         model.addAttribute("name", fio[0] + " " + fio[1]);
         List<Schedule> schedule = personDAO.getSchedule(personData[3]);
-        for (Schedule day : schedule) {
-            System.out.println(day.getWednesday());
-        }
         model.addAttribute("schedule", schedule);
+        model.addAttribute("groupe", personData[3]);
         return "UserLkTable";
     }
 

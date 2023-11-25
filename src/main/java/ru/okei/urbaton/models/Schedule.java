@@ -3,7 +3,13 @@ package ru.okei.urbaton.models;
 public class Schedule {
     private String time, monday, tuesday, wednesday, thursday, friday;
 
-    public Schedule(String time, String monday, double tuesday, String wednesday, double thursday, String friday) {
+    public Schedule(String time, String monday, String tuesday, String wednesday, String thursday, String friday) {
+        this.time = time;
+        this.monday = monday;
+        this.tuesday = tuesday;
+        this.wednesday = wednesday;
+        this.thursday = thursday;
+        this.friday = friday;
     }
 
     public String getTime() {
