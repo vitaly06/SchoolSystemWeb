@@ -19,7 +19,7 @@ public class PersonDAO {
     private static Connection connection;
 
     // Связь с БД
-    public static void connect() {
+    public void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (ClassNotFoundException e) {
@@ -184,12 +184,14 @@ public class PersonDAO {
     public ArrayList<String> getTeachersGroupe() {
         connect();
         ArrayList<String> teachers = new ArrayList<String>();
+        String[] name;
         try {
             Statement statement = connection.createStatement();
             String SQL = "SELECT * FROM USERS WHERE typeProfile = 'teacher'";
             ResultSet resultSet = statement.executeQuery(SQL);
             while (resultSet.next()) {
-                teachers.add(resultSet.getString("name") + " " + resultSet.getString("groupe"));
+                name = resultSet.getString("name").split(" ");
+                teachers.add(name[0] + " " + name[1].charAt(0) + ". " + name[2].charAt(0)  + ". " + resultSet.getString("groupe"));
 
             }
             connection.close();
