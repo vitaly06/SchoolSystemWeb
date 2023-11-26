@@ -32,9 +32,18 @@
                                 <h1>Список преподавателей:</h1>
                             </div>
                             <div class="col-md-12" style="overflow-y:scroll; height: 500px;">
-                                <div class="teachers">
+                                <!--<div class="teachers">
                                     <p th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></p>
-                                </div>
+                                </div>-->
+                                <table>
+                                    <th>ФИО</th>
+                                    <th>Предмет</th>
+                                    <tr th:each="teacher : ${teachers}">
+                                        <div th:each="elem : ${teacher.toString.split(';')}">
+                                            <td th:text="${elem}">ФИО</td>
+                                        </div>
+                                    </tr>
+                                </table>
                             </div>
                             <div class="col-md-12 d-flex justify-content-center" style="margin-top: 5%;">
                                 <form th:method="GET" th:action="@{/regTeacher}">

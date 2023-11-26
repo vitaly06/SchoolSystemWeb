@@ -1,6 +1,7 @@
 package ru.okei.urbaton.dao;
 
 import org.springframework.stereotype.Component;
+import ru.okei.urbaton.models.News;
 import ru.okei.urbaton.models.Person;
 import ru.okei.urbaton.models.Schedule;
 
@@ -69,31 +70,68 @@ public class PersonDAO {
         return false;
     }
 
-    public List<Schedule> getSchedule(String groupe) {
+    // Вывод расписания
+    public List<Schedule> getSchedule(String groupe, String[] personData) {
         List<Schedule> days = new ArrayList<Schedule>();
         connect();
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM GROUPE" + groupe;
-            ResultSet resultSet = statement.executeQuery(SQL);
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("time"));
-                days.add(new Schedule(resultSet.getString("time"),
-                        resultSet.getString("monday"),
-                        resultSet.getString("tuesday"),
-                        resultSet.getString("wednesday"),
-                        resultSet.getString("thursday"),
-                        resultSet.getString("friday")));
+            if (personData[4].equals("teacher")) {
+                String SQL = "SELECT * FROM GROUPE1";
+                ResultSet resultSet = statement.executeQuery(SQL);
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("time"));
+                    days.add(new Schedule(resultSet.getString("time"),
+                            resultSet.getString("monday"),
+                            resultSet.getString("tuesday"),
+                            resultSet.getString("wednesday"),
+                            resultSet.getString("thursday"),
+                            resultSet.getString("friday")));
+                }
+                SQL = "SELECT * FROM GROUPE2";
+                resultSet = statement.executeQuery(SQL);
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("time"));
+                    days.add(new Schedule(resultSet.getString("time"),
+                            resultSet.getString("monday"),
+                            resultSet.getString("tuesday"),
+                            resultSet.getString("wednesday"),
+                            resultSet.getString("thursday"),
+                            resultSet.getString("friday")));
+                }
+                SQL = "SELECT * FROM GROUPE3";
+                resultSet = statement.executeQuery(SQL);
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("time"));
+                    days.add(new Schedule(resultSet.getString("time"),
+                            resultSet.getString("monday"),
+                            resultSet.getString("tuesday"),
+                            resultSet.getString("wednesday"),
+                            resultSet.getString("thursday"),
+                            resultSet.getString("friday")));
+                }
+            } else {
+                String SQL = "SELECT * FROM GROUPE" + groupe;
+                ResultSet resultSet = statement.executeQuery(SQL);
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("time"));
+                    days.add(new Schedule(resultSet.getString("time"),
+                            resultSet.getString("monday"),
+                            resultSet.getString("tuesday"),
+                            resultSet.getString("wednesday"),
+                            resultSet.getString("thursday"),
+                            resultSet.getString("friday")));
+                }
+                connection.close();
+                return days;
             }
-            connection.close();
-            return days;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return Collections.emptyList();
+        return days;
     }
 
-    // Данные о пользователе
+        // Данные о пользователе
     public String[] getData(Person person) {
         connect();
         try {
@@ -124,12 +162,15 @@ public class PersonDAO {
     public ArrayList<String> getTeachers() {
         connect();
         ArrayList<String> teachers = new ArrayList<String>();
+        String[] name;
         try {
             Statement statement = connection.createStatement();
             String SQL = "SELECT * FROM USERS WHERE typeProfile = 'teacher'";
             ResultSet resultSet = statement.executeQuery(SQL);
             while (resultSet.next()) {
-                teachers.add(resultSet.getString("name"));
+                name = resultSet.getString("name").split(" ");
+                String res = name[0] + " " + name[1].charAt(0) + ". " + name[2].charAt(0) + ".;" + resultSet.getString("groupe");
+                teachers.add(res);
 
             }
             connection.close();
@@ -159,6 +200,7 @@ public class PersonDAO {
         return new ArrayList<>();
     }
 
+    // Добавление расписания
     public List<Schedule> addSchedule(Schedule schedule) {
         List<Schedule> days = new ArrayList<Schedule>();
         String[] times = new String[] {"08:00 - 09:00", "09:00 - 10:00", "10:00 - 11:00", "11:00-12:00", "12:00-13:00"};
@@ -186,5 +228,37 @@ public class PersonDAO {
             throwables.printStackTrace();
         }
         return Collections.emptyList();
+    }
+
+    public String addNews(News news){
+        connect();
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "INSERT INTO NEWS VALUES('" + news.getContent() + "')";
+            statement.executeUpdate(SQL);
+            connection.close();
+            return "OK";
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return "ERROR";
+    }
+    public ArrayList<String> getNews() {
+        connect();
+        ArrayList<String> news = new ArrayList<String>();
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "SELECT * FROM NEWS";
+            ResultSet resultSet = statement.executeQuery(SQL);
+            while (resultSet.next()) {
+                news.add(resultSet.getString("content"));
+
+            }
+            connection.close();
+            return news;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 }

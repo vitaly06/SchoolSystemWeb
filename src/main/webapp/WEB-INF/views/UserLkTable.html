@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col py-3">
+            <div class="col py-3" th:each="num : ${nums}">
                 <p>Расписание для <span th:text="${groupe}">№</span> группы:</p>
                 <table>
                     <tr>

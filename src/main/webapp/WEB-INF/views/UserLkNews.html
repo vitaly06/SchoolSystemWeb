@@ -100,8 +100,8 @@
                     <div class="col-md-12 d-flex justify-content-center">
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <div class="col-md-4 align-items-center" style="border-radius: 20px; background-color: #F1D99A; margin-bottom: 5%;">
-                            <h4 style="text-align: center; line-height: 1.3em;"><b>Дорогие ребята!</b> <br>
+                        <div th:each="nw : ${news}" class="col-md-4 align-items-center" style="border-radius: 20px; background-color: #F1D99A; margin-bottom: 5%;">
+                            <h4 th:utext="${nw.toString}" style="text-align: center; line-height: 1.3em;">
                                 Приглашаем на четвертую встречу клуба "Терапевтические сказки". 
                                 Эта встреча для тех, кто хочет научиться не волноваться понапрасну, найти новых друзей и провести время в приятной компании.
                                 21 ноября в 17:55 ждем вас в Малом зале нашей школы с кружкой чая (возьмите что-нибудь к чаепитию с собой).
@@ -110,18 +110,6 @@
                                 КОЛИЧЕСТВО МЕСТ СИЛЬНО ОГРАНИЧЕНО. УСПЕВАЙТЕ!
                                 </h4>
                         </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4 align-items-center" style="border-radius: 20px; background-color: #F1D99A; margin-bottom: 5%;">
-                            <h4 style="text-align: center; line-height: 1.3em;"><b>Дорогие ребята!</b> 
-                                <br>Приглашаем на четвертую встречу клуба "Терапевтические сказки". 
-                                Эта встреча для тех, кто хочет научиться не волноваться понапрасну, найти новых друзей и провести время в приятной компании.
-                                21 ноября в 17:55 ждем вас в Малом зале нашей школы с кружкой чая (возьмите что-нибудь к чаепитию с собой).
-                                Встречу проведёт Кирпичёва Мария Витальевна.
-                                ВАЖНО: Возраст слушателей: 11-13 лет
-                                КОЛИЧЕСТВО МЕСТ СИЛЬНО ОГРАНИЧЕНО. УСПЕВАЙТЕ!
-                                </h4>
-                        </div>
-                        <div class="col-md-1"></div>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 public class Person {
     @NotEmpty(message = "1")
-    @Size(min=3, max=45, message = "Длина не более 45 символов")
+    @Size(min = 3, max = 45, message = "Длина не более 45 символов")
     private String name;
     @NotEmpty(message = "Поле не может быть пустым")
     @Email(message = "1")
