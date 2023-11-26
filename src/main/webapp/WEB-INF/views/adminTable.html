@@ -31,7 +31,9 @@
                     </div>
                 </div>
             </div>
+
             <div class="col py-3">
+                <form th:method="POST" th:action="@{/adminTable}" th:object="${schedule}">
                 <table>
                     <tr>
                         <th>Время</th>
@@ -42,100 +44,103 @@
                         <th>Пятница</th>
                     </tr>
                     <tr>
-                        <td>08:00 - 09:00</td>
-                        <td><select>
+                        <td><span name="time">08:00 - 09:00</span></td>
+                        <td><select name="monday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="tuesday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="wednesday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="thursday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
-                            <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
-                        </select></td>
-                    </tr>
-                    <tr>
-                        <td>09:00 - 10:00</td>
-                        <td><select>
-                            <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
-                        </select></td>
-                        <td><select>
-                            <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
-                        </select></td>
-                        <td><select>
-                            <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
-                        </select></td>
-                        <td><select>
-                            <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
-                        </select></td>
-                        <td><select>
+                        <td><select name="friday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
                     </tr>
                     <tr>
-                        <td>10:00 - 11:00</td>
-                        <td><select>
+                        <td><span name="time">09:00 - 10:00</span></td>
+                        <td><select name="monday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="tuesday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="wednesday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="thursday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="friday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
-                        </select></td>
+                            </select></td>
                     </tr>
                     <tr>
-                        <td>11:00 - 12:00</td>
-                        <td><select>
+                        <td><span name="time">10:00 - 11:00</span></td>
+                        <td><select name="monday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="tuesday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="wednesday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="thursday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="friday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
-                        </select></td>
+                            </select></td>
                     </tr>
                     <tr>
-                        <td>12:00 - 13:00</td>
-                        <td><select>
+                        <td><span name="time">11:00 - 12:00</span></td>
+                        <td><select name="monday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="tuesday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="wednesday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="thursday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
-                        <td><select>
+                        <td><select name="friday">
+                            <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <td><span name="time">12:00 - 13:00</span></td>
+                        <td><select name="monday">
                             <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
                         </select></td>
+                        <td><select name="tuesday">
+                            <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
+                        </select></td>
+                        <td><select name="wednesday">
+                            <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
+                        </select></td>
+                        <td><select name="thursday">
+                            <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
+                        </select></td>
+                        <td><select name="friday">
+                            <option th:each="teacher : ${teachers}"><span th:text="${teacher.toString}"></span></option>
+                            </select></td>
                     </tr>
 
                 </table>
+                    <input type="text" placeholder="Группа №" name="groupe">
                 <button type="submit">
                     Сохранить
                 </button>
+                </form>
             </div>
+
         </div>
     </div>

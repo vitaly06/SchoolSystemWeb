@@ -41,6 +41,7 @@ public class MainController {
     @GetMapping("/schedule")
     public String shedule(Model model){
         model.addAttribute("name", fio[0] + " " + fio[1]);
+        System.out.println(personData[3]);
         List<Schedule> schedule = personDAO.getSchedule(personData[3]);
         model.addAttribute("schedule", schedule);
         model.addAttribute("groupe", personData[3]);
@@ -96,6 +97,11 @@ public class MainController {
     public String adminTable(Model model){
         model.addAttribute("teachers", personDAO.getTeachersGroupe());
         return "adminTable";
+    }
+    @PostMapping("/adminTable")
+    public String addSchedule(@ModelAttribute("schedule") Schedule schedule){
+        personDAO.addSchedule(schedule);
+        return "redirect:/adminPanel";
     }
     // Добавление преподавателя
     @GetMapping("/addTeacher")

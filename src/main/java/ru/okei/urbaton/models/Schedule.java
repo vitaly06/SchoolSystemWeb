@@ -1,7 +1,20 @@
 package ru.okei.urbaton.models;
 
+
 public class Schedule {
-    private String time, monday, tuesday, wednesday, thursday, friday;
+    private String time, monday, tuesday, wednesday, thursday, friday, groupe;
+
+    public Schedule(){}
+
+    public Schedule(String time, String monday, String tuesday, String wednesday, String thursday, String friday, String groupe) {
+        this.time = time;
+        this.monday = monday;
+        this.tuesday = tuesday;
+        this.wednesday = wednesday;
+        this.thursday = thursday;
+        this.friday = friday;
+        this.groupe = groupe;
+    }
 
     public Schedule(String time, String monday, String tuesday, String wednesday, String thursday, String friday) {
         this.time = time;
@@ -10,6 +23,14 @@ public class Schedule {
         this.wednesday = wednesday;
         this.thursday = thursday;
         this.friday = friday;
+    }
+
+    public String getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(String groupe) {
+        this.groupe = groupe;
     }
 
     public String getTime() {

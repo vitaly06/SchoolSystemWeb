@@ -16,6 +16,7 @@ public class PersonDAO {
     }
 
     private static Connection connection;
+
     // Связь с БД
     public static void connect() {
         try {
@@ -67,7 +68,8 @@ public class PersonDAO {
         }
         return false;
     }
-    public List<Schedule> getSchedule(String groupe){
+
+    public List<Schedule> getSchedule(String groupe) {
         List<Schedule> days = new ArrayList<Schedule>();
         connect();
         try {
@@ -111,21 +113,22 @@ public class PersonDAO {
         }
         return new String[5];
     }
-    public boolean adminLogin(String email, String password){
-        if (Objects.equals(email, "admin") && Objects.equals(password, "admin")){
+
+    public boolean adminLogin(String email, String password) {
+        if (Objects.equals(email, "admin") && Objects.equals(password, "admin")) {
             return true;
         }
         return false;
     }
 
-    public ArrayList<String> getTeachers(){
+    public ArrayList<String> getTeachers() {
         connect();
         ArrayList<String> teachers = new ArrayList<String>();
         try {
             Statement statement = connection.createStatement();
             String SQL = "SELECT * FROM USERS WHERE typeProfile = 'teacher'";
             ResultSet resultSet = statement.executeQuery(SQL);
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 teachers.add(resultSet.getString("name"));
 
             }
@@ -136,14 +139,15 @@ public class PersonDAO {
         }
         return new ArrayList<>();
     }
-    public ArrayList<String> getTeachersGroupe(){
+
+    public ArrayList<String> getTeachersGroupe() {
         connect();
         ArrayList<String> teachers = new ArrayList<String>();
         try {
             Statement statement = connection.createStatement();
             String SQL = "SELECT * FROM USERS WHERE typeProfile = 'teacher'";
             ResultSet resultSet = statement.executeQuery(SQL);
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 teachers.add(resultSet.getString("name") + " " + resultSet.getString("groupe"));
 
             }
@@ -153,5 +157,34 @@ public class PersonDAO {
             throwables.printStackTrace();
         }
         return new ArrayList<>();
+    }
+
+    public List<Schedule> addSchedule(Schedule schedule) {
+        List<Schedule> days = new ArrayList<Schedule>();
+        String[] times = new String[] {"08:00 - 09:00", "09:00 - 10:00", "10:00 - 11:00", "11:00-12:00", "12:00-13:00"};
+        String[] mondays = schedule.getMonday().split(",");
+        String[] tuesday = schedule.getTuesday().split(",");
+        String[] wednesday = schedule.getWednesday().split(",");
+        String[] thursday = schedule.getThursday().split(",");
+        String[] friday = schedule.getFriday().split(",");
+        connect();
+        try {
+            Statement statement = connection.createStatement();
+            System.out.println(schedule.getGroupe());
+            String SQL = "DELETE FROM GROUPE" + schedule.getGroupe();
+            statement.executeUpdate(SQL);
+            for(int i = 0; i < 5; i++){
+                SQL = "INSERT INTO GROUPE" + schedule.getGroupe() + " VALUES('" + times[i] + "', '" + mondays[i] +
+                        "', '" + tuesday[i] + "', '" + wednesday[i] + "', '" + thursday[i]
+                        + "', '" + friday[i] + "')";
+                statement.executeUpdate(SQL);
+            }
+            connection.close();
+            return days;
+            //System.out.println(schedule.getTime() + " " + schedule.getMonday());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return Collections.emptyList();
     }
 }
