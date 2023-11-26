@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="stylesheet" href="resources/SimpleChatbot-main/chatbot/chatbot.css">
+    <script src="resources/SimpleChatbot-main/chatbot/fp2.js"></script>
+    <script src="resources/SimpleChatbot-main/chatbot/chatbot.js"></script>
+    <title>Главная страница</title>
+</head>
+<body>
+    
+   <header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 d-flex justify-content-center" id="header">
+                <div class="container-fluid">
+                    <div class="row">
+                    <div class="col-md-2  d-flex justify-content-center">
+                        <h1>SoundSpace</h1>
+                    </div>
+                    <div class="col-md-2  d-flex justify-content-center">
+                        <p><a href="">о нас</a></p>
+                    </div>
+                    <div class="col-md-2  d-flex justify-content-center">
+                        <p><a href="">новости</a></p>
+                    </div>
+                    <div class="col-md-2  d-flex justify-content-center">
+                        <p><a href="">главная</a></p>
+                    </div>
+                    <div th:if="${auth} == true" class="col-md-2  d-flex justify-content-center">
+                        <p><a href="/profile">личный кабинет</a></p>
+                    </div>
+                    <div th:unless="${auth} == true" class="col-md-2  d-flex justify-content-center">
+                        <p><a href="/registration">личный кабинет</a></p>
+                    </div>
+                    <div class="col-md-2  d-flex justify-content-center">
+                        <p>+7 (343) 301-91-29</p>
+                    </div>
+                </div>     
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+   </header>
+   <main>
+    <div class="bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-center">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center" style="margin-top: 10%;">
+                        <h1>Детская школа искусств</h1>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center" style="text-align: center; ">
+                        <p>образовательное учреждение, которое предоставляет возможность получения знаний и навыков в области искусств</p>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <form action="#">
+                            <button class="button">Начать!</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="resources/imgs/girl.png" alt="" class="myImg" id="responsive-image">
+            </div>
+        </div>
+    </div>
+   </div>
+
+   <div class="bg2" style="margin-top: 5%;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 d-flex justify-content-center" style="background-color: #F1D99A; margin-left: 5%;">
+                <img src="resources/imgs/boy.png" alt="" class="myImg2" id="responsive-image">
+            </div>
+            <div class="col-md-6 d-flex justify-content-end" id="text">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center" style="margin-top: 10%;">
+                        <h1>О нас</h1>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center" style="text-align: center; ">
+                        <p>Мы компания SoundSpace. И мы помогаем детям получать знания с комфортом!  Ученики могут изучать различные направления искусства, такие как пение, игра на разнообразных инструментах и многое другое. Мы предоставляем расписание учебных занятий, показатель успеваемости ребенка, так же дневник и журнал.  Мы предоставляем возможность учиться в любое время и в любом месте.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+
+   <div class="bg3" style="margin-top: 5%;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-end">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center" style="margin-top: 10%;">
+                        <h1>О школе</h1>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center" style="text-align: center; ">
+                        <p>Наша миссия — обеспечить доступное и действительно качественное образование . Персонализация образования — будущее, которое наступило уже сегодня. Мы создаем самую большую онлайн-школу, собравшую в себя опыт лучших специалистов и самые современные технологии. Каждый человек имеет право на образование, поэтому мы делаем все возможное, чтобы помочь каждому ребенку получить необходимые знания для достойного будущего.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center" style="background-color: #E69F4F; margin-left: 10%;">
+                <img src="resources/imgs/girl2.png" alt="" class="myImg2" id="responsive-image">
+            </div>
+        </div>
+    </div>
+   </div>
+
+   <div class="bg4" style="margin-top: 5%;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 d-flex justify-content-center" style="background-color: #F1D99A; margin-left: 5%;">
+                <img src="img/boy2.png" alt="" class="myImg2" id="responsive-image">
+            </div>
+            <div class="col-md-6 d-flex justify-content-end" id="text">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center" style="margin-top: 10%;">
+                        <h1>Почему именно мы?</h1>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center" style="text-align: center; ">
+                        <p>Мы предлагаем обучение на высоком уровне, удобный формат занятий и доступность для всех. Наша школа отличается тем, что мы уделяем особое внимание индивидуальному подходу к каждому ученику. Мы стремимся помочь каждому развить свой музыкальный талант и достичь желаемых результатов в музыке.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</main>
+<div class="chatbot__btn">
+    <div class="chatbot__tooltip d-none">Есть вопрос?</div>
+  </div>
+   <footer>
+    <div class="container-fluid" style="margin-top: 5%; background-color: #E69F4F;">
+        <div class="row">
+            <div class="col-md-2 d-flex justify-content-center"></div>
+            <div class="col-md-3 d-flex justify-content-center">
+                © ОНЛАЙН-ШКОЛА SoundSpace 2023. <br> Все права защищены.
+            </div>
+        </div>
+    </div>
+   </footer>
+   
+<script>
+    // конфигурация чат-бота
+const configChatbot = {};
+// CSS-селектор кнопки, посредством которой будем вызывать окно диалога с чат-ботом
+configChatbot.btn = '.chatbot__btn';
+// ключ для хранения отпечатка браузера
+configChatbot.key = 'fingerprint';
+// реплики чат-бота
+configChatbot.replicas = {
+  bot: {
+    0: { content: ['Привет!', 'я готов ответить на все частозадаваемые вопросы'], human: [0, 1, 2, 3, 4] },
+    1: { content: ['Один раз в 3 месяца, длительностью 2 недели'], human: [0, 1, 2, 3, 4] },
+    2: { content: ['Да есть, свяжитесь с администратором 89125642309 - Мария'], human: [0, 1, 2, 3, 4] },
+    3: { content: ['Смена преподавателя происходит после согласования администратора.'], human: [0, 1, 2, 3, 4] },
+    4: { content: ['Все мероприятия, конкурсы отображаются на вкладке «новости»'], human: [0, 1, 2, 3, 4] },
+    5: { content: ['Летние лагеря не предусмотрены на базе нашей школы'], human: [0, 1, 2, 3, 4] },
+    },
+  human: {
+    0: { content: ['Как часто и на какой срок можно брать отпуск от занятий? '], bot: 1 },
+    1: { content: ['Есть ли возможность индивидуальных занятий или занятий в малых группах?'], bot: 2 },
+    2: { content: 'Можно ли поменять расписание или выбрать другого преподавателя?', bot: 3 },
+    3: { content: 'Как узнать о предстоящих концертах и конкурсах в школе?', bot: 4 },
+    4: { content: 'Предусмотрены ли летние курсы или лагеря для музыкантов?', bot: 5},
+   }
+}
+// корневой элемент
+configChatbot.root = SimpleChatbot.createTemplate();
+// URL chatbot.php
+configChatbot.url = '/chatbot/chatbot.php';
+// создание SimpleChatbot
+let chatbot = new SimpleChatbot(configChatbot);
+// при клике по кнопке configChatbot.btn
+document.querySelector(configChatbot.btn).onclick = function (e) {
+  this.classList.add('d-none');
+  const $tooltip = this.querySelector('.chatbot__tooltip');
+  if ($tooltip) {
+    $tooltip.classList.add('d-none');
+  }
+  configChatbot.root.classList.toggle('chatbot_hidden');
+  chatbot.init();
+};
+// добавление ключа для хранения отпечатка браузера в LocalStorage
+let fingerprint = localStorage.getItem(configChatbot.key);
+if (!fingerprint) {
+  Fingerprint2.get(function (components) {
+    fingerprint = Fingerprint2.x64hash128(components.map(function (pair) {
+      return pair.value
+    }).join(), 31)
+    localStorage.setItem(configChatbot.key, fingerprint)
+  });
+}
+</script>
+
+</body>
+</html>

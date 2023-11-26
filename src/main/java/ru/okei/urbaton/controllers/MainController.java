@@ -29,7 +29,7 @@ public class MainController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("auth", auth);
-        return "main";
+        return "main_new";
     }
 
     // Личный кабинет
